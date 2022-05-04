@@ -161,7 +161,6 @@ class FixedArray
         return $array->key();
     }
 
-
     public static function last(SplFixedArray $array): mixed
     {
         return self::offsetGet(self::count($array), $array);
