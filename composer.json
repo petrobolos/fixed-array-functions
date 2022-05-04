@@ -59,11 +59,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Petrobolos\\FixedArray\\FixedArrayServiceProvider"
-            ],
-            "aliases": {
-                "FixedArray": "Petrobolos\\FixedArray\\Facades\\FixedArray"
-            }
+                "Petrobolos\\FixedArray\\FixedArrayFunctionsServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
