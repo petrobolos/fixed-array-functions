@@ -26,6 +26,18 @@ test('current returns the current array entry', function () {
     $this->assertEquals($test, FixedArray::current($array));
 });
 
+test('from array creates a fixed array from a regular array', function () {
+    $array = ['test'];
+    $count = count($array);
+    $convertedArray = FixedArray::fromArray($array);
+
+    /** @phpstan-ignore-next-line */
+    $this->assertEquals($count, FixedArray::count($convertedArray));
+
+    /** @phpstan-ignore-next-line */
+    $this->assertSame(head($array), FixedArray::first($convertedArray));
+});
+
 test('get size returns the size of the array', function () {
     $count = 5;
     $array = new SplFixedArray($count);

@@ -17,11 +17,23 @@ use SplFixedArray;
  */
 class FixedArray
 {
+    /**
+     * Alias for push.
+     *
+     * @param mixed $value
+     * @param \SplFixedArray $fixedArray
+     * @return \SplFixedArray
+     */
     public static function add(mixed $value, SplFixedArray $fixedArray): SplFixedArray
     {
         return self::push($value, $fixedArray);
     }
 
+    /**
+     * @param \Iterator $items
+     * @param \SplFixedArray $array
+     * @return \SplFixedArray
+     */
     public static function addFrom(Iterator $items, SplFixedArray $array): SplFixedArray
     {
         foreach ($items as $value) {
@@ -29,6 +41,19 @@ class FixedArray
         }
 
         return $array;
+    }
+
+    /**
+     * Returns whether a given item is contained within the array.
+     *
+     * @param mixed $item
+     * @param \SplFixedArray $array
+     * @param bool $useStrict
+     * @return bool
+     */
+    public static function contains(mixed $item, SplFixedArray $array, bool $useStrict = true): bool
+    {
+        return in_array($item, self::toArray($array), $useStrict);
     }
 
     /**
@@ -40,6 +65,17 @@ class FixedArray
     public static function count(SplFixedArray $array): int
     {
         return $array->count();
+    }
+
+    /**
+     * Create a new fixed array.
+     *
+     * @param int $size
+     * @return \SplFixedArray
+     */
+    public static function create(int $size = 5): SplFixedArray
+    {
+        return new SplFixedArray($size);
     }
 
     /**
@@ -63,11 +99,25 @@ class FixedArray
         return self::offsetGet(0, $array);
     }
 
+    /**
+     * Import a PHP array into a fixed array.
+     *
+     * @param array $array
+     * @param bool $preserveKeys
+     * @return \SplFixedArray
+     */
     public static function fromArray(array $array, bool $preserveKeys = true): SplFixedArray
     {
         return SplFixedArray::fromArray($array, $preserveKeys);
     }
 
+    /**
+     * Import a collection into a fixed array.
+     *
+     * @param \Illuminate\Support\Collection $collection
+     * @param bool $preserveKeys
+     * @return \SplFixedArray
+     */
     public static function fromCollection(Collection $collection, bool $preserveKeys = true): SplFixedArray
     {
         return SplFixedArray::fromArray($collection->toArray(), $preserveKeys);
@@ -84,6 +134,12 @@ class FixedArray
         return $array->getSize();
     }
 
+    /**
+     * Returns whether a given value is an SplFixedArray.
+     *
+     * @param mixed $array
+     * @return bool
+     */
     public static function isFixedArray(mixed $array): bool
     {
         return $array instanceof SplFixedArray;
@@ -104,6 +160,7 @@ class FixedArray
 
         return $array->key();
     }
+
 
     public static function last(SplFixedArray $array): mixed
     {
