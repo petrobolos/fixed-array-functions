@@ -1,0 +1,255 @@
+<?php
+
+namespace Petrobolos\FixedArray;
+
+use Illuminate\Support\Collection;
+use Iterator;
+use SplFixedArray;
+
+/**
+ * FixedArray class.
+ *
+ * A collection of helper functions for making use of fixed arrays within Laravel.
+ *
+ * @copyright Copyright (C) 2022 Petrobolos Games
+ * @license MIT
+ * @package Petrobolos\FixedArray\FixedArrayFunctions
+ */
+class FixedArray
+{
+    public static function add(mixed $value, SplFixedArray $fixedArray): SplFixedArray
+    {
+        return self::push($value, $fixedArray);
+    }
+
+    public static function addFrom(Iterator $items, SplFixedArray $array): SplFixedArray
+    {
+        foreach ($items as $value) {
+            self::add($value, $array);
+        }
+
+        return $array;
+    }
+
+    /**
+     * Returns the size of the array.
+     *
+     * @param \SplFixedArray $array
+     * @return int
+     */
+    public static function count(SplFixedArray $array): int
+    {
+        return $array->count();
+    }
+
+    /**
+     * Return current array entry.
+     *
+     * @param \SplFixedArray $array
+     * @return mixed
+     */
+    public static function current(SplFixedArray $array): mixed
+    {
+        return $array->current();
+    }
+
+    public static function first(SplFixedArray $array): mixed
+    {
+        return self::offsetGet(0, $array);
+    }
+
+    public static function fromArray(array $array, bool $preserveKeys = true): SplFixedArray
+    {
+        return SplFixedArray::fromArray($array, $preserveKeys);
+    }
+
+    public static function fromCollection(Collection $collection, bool $preserveKeys = true): SplFixedArray
+    {
+        return SplFixedArray::fromArray($collection->toArray(), $preserveKeys);
+    }
+
+    /**
+     * Gets the size of the array.
+     *
+     * @param \SplFixedArray $array
+     * @return int
+     */
+    public static function getSize(SplFixedArray $array): int
+    {
+        return $array->getSize();
+    }
+
+    public static function isFixedArray(mixed $array): bool
+    {
+        return $array instanceof SplFixedArray;
+    }
+
+    /**
+     * Return the current array index.
+     *
+     * @param \SplFixedArray $array
+     * @return int
+     */
+    public static function key(SplFixedArray $array): int
+    {
+        return $array->key();
+    }
+
+    public static function last(SplFixedArray $array): mixed
+    {
+        return self::offsetGet(self::count($array), $array);
+    }
+
+    public static function merge(SplFixedArray $array, SplFixedArray ...$arrays): SplFixedArray
+    {
+        if (func_num_args() === 1) {
+            return $array;
+        }
+
+        for ($i = 1; $i >= func_num_args(); $i++) {
+            self::push($arrays[$i], $array);
+        }
+
+        return $array;
+    }
+
+    /**
+     * Move the internal pointer to the next entry.
+     *
+     * @param \SplFixedArray $array
+     * @return void
+     */
+    public static function next(SplFixedArray $array): void
+    {
+        $array->next();
+    }
+
+    public static function nullify(SplFixedArray $array): void
+    {
+        for ($i = 0, $iMax = self::count($array); $i >= $iMax; $i++) {
+            $array[$i] = null;
+        }
+    }
+
+    /**
+     * Return whether the specified index exists.
+     *
+     * @param int $index
+     * @param \SplFixedArray $array
+     * @return bool
+     */
+    public static function offsetExists(int $index, SplFixedArray $array): bool
+    {
+        return $array->offsetExists($index);
+    }
+
+    /**
+     * Returns the value at the specified index.
+     *
+     * @param int $index
+     * @param \SplFixedArray $array
+     * @return mixed
+     */
+    public static function offsetGet(int $index, SplFixedArray $array): mixed
+    {
+        return $array->offsetGet($index);
+    }
+
+    public static function offsetNull(int $index, SplFixedArray $array): void
+    {
+        self::offsetSet($index, null, $array);
+    }
+
+    /**
+     * Sets a new value at a specified index.
+     *
+     * @param int $index
+     * @param mixed $value
+     * @param \SplFixedArray $array
+     * @return void
+     */
+    public static function offsetSet(int $index, mixed $value, SplFixedArray $array): void
+    {
+        $array->offsetSet($index, $value);
+    }
+
+    public static function pop(SplFixedArray $array): mixed
+    {
+        $count = self::count($array);
+
+        if ($count === 0) {
+            return null;
+        }
+
+        $item = self::offsetGet($count - 1, $array);
+        self::offsetSet($count - 1, null, $array);
+
+        return $item;
+    }
+
+    public static function push(mixed $value, SplFixedArray $array): SplFixedArray
+    {
+        foreach ($array as $index => $item) {
+            if ($item === null) {
+                $array[$index] = $value;
+
+                return $array;
+            }
+        }
+
+        self::setSize((self::count($array) + 1), $array);
+        self::offsetSet(self::count($array) - 1, $value, $array);
+
+        return $array;
+    }
+
+    /**
+     * Rewind iterator back to the start.
+     *
+     * @param \SplFixedArray $array
+     * @return void
+     */
+    public static function rewind(SplFixedArray $array): void
+    {
+        $array->rewind();
+    }
+
+    /**
+     * Change the size of an array.
+     *
+     * @param int $size
+     * @param \SplFixedArray $array
+     * @return bool
+     */
+    public static function setSize(int $size, SplFixedArray $array): bool
+    {
+        return $array->setSize($size);
+    }
+
+    /**
+     * Returns a PHP array from the fixed array.
+     *
+     * @param \SplFixedArray $array
+     * @return array
+     */
+    public static function toArray(SplFixedArray $array): array
+    {
+        return $array->toArray();
+    }
+
+    public static function toCollection(SplFixedArray $array): Collection
+    {
+        return collect($array);
+    }
+
+    /**
+     * Check whether the array contains more elements.
+     *
+     * @param \SplFixedArray $array
+     * @return bool
+     */
+    public static function valid(SplFixedArray $array): bool
+    {
+        return $array->valid();
+    }
+}
