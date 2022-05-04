@@ -23,7 +23,7 @@ test('current returns the current array entry', function () {
     $array[0] = 'test';
 
     /** @phpstan-ignore-next-line */
-   $this->assertEquals($test, FixedArray::current($array));
+    $this->assertEquals($test, FixedArray::current($array));
 });
 
 test('get size returns the size of the array', function () {
@@ -52,11 +52,11 @@ test('next advances the internal pointer', function () {
         $this->markTestSkipped(LEGACY_SKIP_MSG);
     }
 
-   $array = new SplFixedArray(5);
-   FixedArray::next($array);
+    $array = new SplFixedArray(5);
+    FixedArray::next($array);
 
     /** @phpstan-ignore-next-line */
-   $this->assertSame(1, FixedArray::key($array));
+    $this->assertSame(1, FixedArray::key($array));
 });
 
 test('offset exists returns whether a given index is occupied', function () {
@@ -82,14 +82,14 @@ test('offset get returns whatever is stored in a given index', function () {
 });
 
 test('offset set pushes a given value to a chosen index', function () {
-   $array = new SplFixedArray(5);
-   $test = 'test';
-   $index = 4;
+    $array = new SplFixedArray(5);
+    $test = 'test';
+    $index = 4;
 
-   FixedArray::offsetSet($index, $test, $array);
+    FixedArray::offsetSet($index, $test, $array);
 
     /** @phpstan-ignore-next-line */
-   $this->assertSame($test, FixedArray::offsetGet($index, $array));
+    $this->assertSame($test, FixedArray::offsetGet($index, $array));
 });
 
 test('rewind resets the internal pointer', function () {
