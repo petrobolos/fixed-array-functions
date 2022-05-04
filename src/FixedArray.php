@@ -44,12 +44,17 @@ class FixedArray
 
     /**
      * Return current array entry.
+     * Does nothing on PHP 8 or above.
      *
      * @param \SplFixedArray $array
      * @return mixed
      */
     public static function current(SplFixedArray $array): mixed
     {
+        if (self::noLegacyMethods()) {
+            return null;
+        }
+
         return $array->current();
     }
 
@@ -86,12 +91,17 @@ class FixedArray
 
     /**
      * Return the current array index.
+     * Does nothing on PHP 8 or above.
      *
      * @param \SplFixedArray $array
-     * @return int
+     * @return null|int
      */
-    public static function key(SplFixedArray $array): int
+    public static function key(SplFixedArray $array): ?int
     {
+        if (self::noLegacyMethods()) {
+            return null;
+        }
+
         return $array->key();
     }
 
@@ -115,12 +125,17 @@ class FixedArray
 
     /**
      * Move the internal pointer to the next entry.
+     * Does nothing on PHP 8 or above.
      *
      * @param \SplFixedArray $array
      * @return void
      */
     public static function next(SplFixedArray $array): void
     {
+        if (self::noLegacyMethods()) {
+            return;
+        }
+
         $array->next();
     }
 
@@ -205,12 +220,17 @@ class FixedArray
 
     /**
      * Rewind iterator back to the start.
+     * Does nothing on PHP 8 or above.
      *
      * @param \SplFixedArray $array
      * @return void
      */
     public static function rewind(SplFixedArray $array): void
     {
+        if (self::noLegacyMethods()) {
+            return;
+        }
+
         $array->rewind();
     }
 
@@ -244,12 +264,22 @@ class FixedArray
 
     /**
      * Check whether the array contains more elements.
+     * Does nothing on PHP 8 or above.
      *
      * @param \SplFixedArray $array
-     * @return bool
+     * @return null|bool
      */
-    public static function valid(SplFixedArray $array): bool
+    public static function valid(SplFixedArray $array): ?bool
     {
+        if (self::noLegacyMethods()) {
+            return null;
+        }
+
         return $array->valid();
+    }
+
+    protected static function noLegacyMethods(): bool
+    {
+        return PHP_VERSION_ID >= 80000;
     }
 }
