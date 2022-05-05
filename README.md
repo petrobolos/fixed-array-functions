@@ -12,6 +12,7 @@ Working with large amounts of game data is increasingly common at Petrobolos, so
 easier and as efficient as possible.
 
 ## Full list of working methods:
+ 
 | Method         | Description                                                                 |                                         Example |
 |:---------------|:----------------------------------------------------------------------------|------------------------------------------------:|
 | add            | Alias for push.                                                             |                `FixedArray::add('bacon', $arr)` |
@@ -33,7 +34,9 @@ easier and as efficient as possible.
 | offsetSet      | Replaces the value at a given array offset with a provided value.           |   `FixedArray::offsetSet(3, $value, $haystack)` |
 | pop            | Pops the latest value from the array.                                       |                       `FixedArray::pop($array)` |
 | push           | Pushes a given value to the first available space on the array.             |              `FixedArray::push($value, $array)` |
+| resize         | Alias for setSize.                                                          |                `FixedArray::resize(10, $array)` |
 | second         | Returns the second value from the array.                                    |                    `FixedArray::second($array)` |
+| setSize        | Resizes the array to a given size.                                          |               `FixedArray::setSize(10, $array)` |
 | toArray        | Converts a fixed array into a standard array.                               |                   `FixedArray::toArray($array)` |
 | toCollection   | Converts a fixed array into an Illuminate collection.                       |              `FixedArray::toCollection($array)` |
 

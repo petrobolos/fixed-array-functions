@@ -335,6 +335,18 @@ class FixedArray
     }
 
     /**
+     * Alias for setSize.
+     *
+     * @param int $size
+     * @param \SplFixedArray $array
+     * @return bool
+     */
+    public function resize(int $size, SplFixedArray $array): bool
+    {
+        return self::setSize($size, $array);
+    }
+
+    /**
      * Returns the second value from a fixed array.
      *
      * @param \SplFixedArray $array
