@@ -34,8 +34,8 @@ test('contains returns true if a given item is contained within the array', func
 });
 
 test('create returns a new spl fixed array of a given size', function () {
-   $count = 10;
-   $array = FixedArray::create($count);
+    $count = 10;
+    $array = FixedArray::create($count);
 
     /** @phpstan-ignore-next-line */
     $this->assertTrue(FixedArray::isFixedArray($array));
@@ -67,14 +67,14 @@ test('from collection creates a fixed array from a collection', function () {
 });
 
 test('is fixed array indicates whether a given variable is an spl fixed array', function () {
-   $fixedArray = FixedArray::create();
-   $standardArray = [];
+    $fixedArray = FixedArray::create();
+    $standardArray = [];
 
     /** @phpstan-ignore-next-line */
-   $this->assertTrue(FixedArray::isFixedArray($fixedArray));
+    $this->assertTrue(FixedArray::isFixedArray($fixedArray));
 
     /** @phpstan-ignore-next-line */
-   $this->assertFalse(FixedArray::isFixedArray($standardArray));
+    $this->assertFalse(FixedArray::isFixedArray($standardArray));
 });
 
 test('last retrieves the last value from an array', function () {

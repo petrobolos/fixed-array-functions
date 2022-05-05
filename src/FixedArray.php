@@ -167,7 +167,6 @@ class FixedArray
         return $array->key();
     }
 
-
     /**
      * Retrieves the last item from the array.
      *
