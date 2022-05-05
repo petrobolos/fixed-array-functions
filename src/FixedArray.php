@@ -13,7 +13,7 @@ use SplFixedArray;
  *
  * @copyright Copyright (C) 2022 Petrobolos Games
  * @license MIT
- * @package Petrobolos\FixedArray\FixedArrayFunctions
+ * @package Petrobolos\FixedArray
  */
 class FixedArray
 {
