@@ -2,8 +2,8 @@
 
 namespace Petrobolos\FixedArray;
 
+use ArrayAccess;
 use Illuminate\Support\Collection;
-use Iterator;
 use SplFixedArray;
 
 /**
@@ -30,11 +30,11 @@ class FixedArray
     }
 
     /**
-     * @param \Iterator $items
+     * @param \ArrayAccess|array $items
      * @param \SplFixedArray $array
      * @return \SplFixedArray
      */
-    public static function addFrom(Iterator $items, SplFixedArray $array): SplFixedArray
+    public static function addFrom(ArrayAccess|array $items, SplFixedArray $array): SplFixedArray
     {
         foreach ($items as $value) {
             self::add($value, $array);
@@ -94,6 +94,12 @@ class FixedArray
         return $array->current();
     }
 
+    /**
+     * Returns the first value from a fixed array.
+     *
+     * @param \SplFixedArray $array
+     * @return mixed
+     */
     public static function first(SplFixedArray $array): mixed
     {
         return self::offsetGet(0, $array);
@@ -162,19 +168,30 @@ class FixedArray
     }
 
 
+    /**
+     * Retrieves the last item from the array.
+     *
+     * @param \SplFixedArray $array
+     * @return mixed
+     */
     public static function last(SplFixedArray $array): mixed
     {
-        return self::offsetGet(self::count($array), $array);
+        return self::offsetGet(self::count($array) - 1, $array);
     }
 
-    public static function merge(SplFixedArray $array, SplFixedArray ...$arrays): SplFixedArray
+    /**
+     * Merges multiple fixed arrays, arrays, or collections into a single fixed array.
+     *
+     * @param \SplFixedArray $array
+     * @param \SplFixedArray|array|\Illuminate\Support\Collection ...$arrays
+     * @return \SplFixedArray
+     */
+    public static function merge(SplFixedArray $array, SplFixedArray|array|Collection ...$arrays): SplFixedArray
     {
-        if (func_num_args() === 1) {
-            return $array;
-        }
-
-        for ($i = 1; $i >= func_num_args(); $i++) {
-            self::push($arrays[$i], $array);
+        foreach ($arrays as $items) {
+            foreach ($items as $item) {
+                self::push($item, $array);
+            }
         }
 
         return $array;
@@ -196,10 +213,16 @@ class FixedArray
         $array->next();
     }
 
+    /**
+     * Replaces the contents of a fixed array with nulls.
+     *
+     * @param \SplFixedArray $array
+     * @return void
+     */
     public static function nullify(SplFixedArray $array): void
     {
-        for ($i = 0, $iMax = self::count($array); $i >= $iMax; $i++) {
-            $array[$i] = null;
+        for ($i = 0, $iMax = self::count($array); $i < $iMax; $i++) {
+            self::offsetNull($i, $array);
         }
     }
 
@@ -227,6 +250,13 @@ class FixedArray
         return $array->offsetGet($index);
     }
 
+    /**
+     * Set a given offset to a null value.
+     *
+     * @param int $index
+     * @param \SplFixedArray $array
+     * @return void
+     */
     public static function offsetNull(int $index, SplFixedArray $array): void
     {
         self::offsetSet($index, null, $array);
@@ -245,6 +275,12 @@ class FixedArray
         $array->offsetSet($index, $value);
     }
 
+    /**
+     * Pops the latest value from the array.
+     *
+     * @param \SplFixedArray $array
+     * @return mixed
+     */
     public static function pop(SplFixedArray $array): mixed
     {
         $count = self::count($array);
@@ -259,6 +295,14 @@ class FixedArray
         return $item;
     }
 
+    /**
+     * Pushes a given value to the first available space on the array.
+     * If the array is too small, the array size is extended by a single value.
+     *
+     * @param mixed $value
+     * @param \SplFixedArray $array
+     * @return \SplFixedArray
+     */
     public static function push(mixed $value, SplFixedArray $array): SplFixedArray
     {
         foreach ($array as $index => $item) {
@@ -292,6 +336,21 @@ class FixedArray
     }
 
     /**
+     * Returns the second value from a fixed array.
+     *
+     * @param \SplFixedArray $array
+     * @return mixed
+     */
+    public static function second(SplFixedArray $array): mixed
+    {
+        if (self::offsetExists(1, $array)) {
+            return self::offsetGet(1, $array);
+        }
+
+        return null;
+    }
+
+    /**
      * Change the size of an array.
      *
      * @param int $size
@@ -314,6 +373,12 @@ class FixedArray
         return $array->toArray();
     }
 
+    /**
+     * Returns a collection from the fixed array.
+     *
+     * @param \SplFixedArray $array
+     * @return \Illuminate\Support\Collection
+     */
     public static function toCollection(SplFixedArray $array): Collection
     {
         return collect($array);
@@ -335,6 +400,11 @@ class FixedArray
         return $array->valid();
     }
 
+    /**
+     * Returns true if the current PHP version is 8.0 or above.
+     *
+     * @return bool
+     */
     protected static function noLegacyMethods(): bool
     {
         return PHP_VERSION_ID >= 80000;
