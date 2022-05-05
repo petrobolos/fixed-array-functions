@@ -34,8 +34,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Petrobolos\\FixedArray\\": "src",
-            "Petrobolos\\FixedArray\\Database\\Factories\\": "database/factories"
+            "Petrobolos\\FixedArray\\": "src"
         }
     },
     "autoload-dev": {
