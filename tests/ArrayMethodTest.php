@@ -44,6 +44,39 @@ test('create returns a new spl fixed array of a given size', function () {
     $this->assertEquals($count, FixedArray::count($array));
 });
 
+test('each applies a callback over each item without modifying the array', function () {
+    $values = FixedArray::fromArray([1, 2, 3]);
+    $otherContainer = FixedArray::create();
+
+    FixedArray::each($values, static function (int $value) use (&$otherContainer) {
+        FixedArray::push($value * 2, $otherContainer);
+    });
+
+    /** @phpstan-ignore-next-line */
+    $this->assertNotEquals($values, $otherContainer);
+
+    /** @phpstan-ignore-next-line */
+    $this->assertEquals(FixedArray::first($values), 1);
+
+    /** @phpstan-ignore-next-line */
+    $this->assertEquals(FixedArray::first($otherContainer), 2);
+});
+
+test('filter removes items from an array that pass a given test', function () {
+    $values = FixedArray::fromArray([1, 2, 3, 4, 5]);
+
+    $filtered = FixedArray::filter($values, static fn (int $value) => $value % 2 === 0);
+
+    /** @phpstan-ignore-next-line */
+    $this->assertNotContains(1, $filtered);
+
+    /** @phpstan-ignore-next-line */
+    $this->assertNotContains(3, $filtered);
+
+    /** @phpstan-ignore-next-line */
+    $this->assertNotContains(5, $filtered);
+});
+
 test('first returns the first element of the array', function () {
     $array = new SplFixedArray(2);
     $test = 'test';
@@ -82,6 +115,28 @@ test('last retrieves the last value from an array', function () {
 
     /** @phpstan-ignore-next-line */
     $this->assertEquals(5, FixedArray::last($array));
+});
+
+test('map applies a function to an array and returns it', function () {
+    $array = FixedArray::fromArray([1, 2, 3, 4, 5]);
+
+    $mappedArray = FixedArray::map($array, static fn (int $item) => $item * 2);
+
+    foreach ($mappedArray as $index => $item) {
+        /** @phpstan-ignore-next-line */
+        $this->assertEquals($array[$index] * 2, $item);
+    }
+});
+
+test('map applies a function by name to an array and returns it', function () {
+    $array = FixedArray::fromArray([1, 2, 3, 4, 5]);
+
+    $mappedArray = FixedArray::map($array, 'is_integer');
+
+    foreach ($mappedArray as $item) {
+        /** @phpstan-ignore-next-line */
+        $this->assertTrue($item);
+    }
 });
 
 test('merge will merge together multiple array-like items into a single fixed array', function () {
