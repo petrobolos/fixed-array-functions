@@ -95,6 +95,36 @@ class FixedArray
     }
 
     /**
+     * Apply a callback to each item in the array without modifying the original array.
+     *
+     * @param \SplFixedArray $array
+     * @param callable $callback
+     * @return \SplFixedArray
+     */
+    public static function each(SplFixedArray $array, callable $callback): SplFixedArray
+    {
+        foreach ($array as $key => $value) {
+            $callback($value, $key);
+        }
+
+        return $array;
+    }
+
+    /**
+     * Apply a filter to a given fixed array.
+     *
+     * @param \SplFixedArray $array
+     * @param callable $callback
+     * @return \SplFixedArray
+     */
+    public static function filter(SplFixedArray $array, callable $callback): SplFixedArray
+    {
+        $result = array_filter(self::toArray($array), $callback);
+
+        return self::fromArray($result);
+    }
+
+    /**
      * Returns the first value from a fixed array.
      *
      * @param \SplFixedArray $array
@@ -176,6 +206,20 @@ class FixedArray
     public static function last(SplFixedArray $array): mixed
     {
         return self::offsetGet(self::count($array) - 1, $array);
+    }
+
+    /**
+     * Apply a callback to each item in the array and return the new array.
+     *
+     * @param \SplFixedArray $array
+     * @param callable|string $callback
+     * @return \SplFixedArray
+     */
+    public static function map(SplFixedArray $array, callable|string $callback): SplFixedArray
+    {
+        $array = array_map($callback, self::toArray($array));
+
+        return self::fromArray($array);
     }
 
     /**
