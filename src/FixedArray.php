@@ -341,7 +341,7 @@ class FixedArray
      * @param \SplFixedArray $array
      * @return bool
      */
-    public function resize(int $size, SplFixedArray $array): bool
+    public static function resize(int $size, SplFixedArray $array): bool
     {
         return self::setSize($size, $array);
     }
