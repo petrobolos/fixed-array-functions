@@ -16,7 +16,7 @@ use SplFixedArray;
  * @license MIT
  * @package Petrobolos\FixedArray
  */
-class FixedArrayable implements JsonSerializable
+final class FixedArrayable implements JsonSerializable
 {
     /**
      * The underlying array value.
