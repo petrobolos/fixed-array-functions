@@ -30,6 +30,8 @@ class FixedArray
     }
 
     /**
+     * Adds values from a given array or array-like object into the current fixed array.
+     *
      * @param \ArrayAccess|array $items
      * @param \SplFixedArray $array
      * @return \SplFixedArray
