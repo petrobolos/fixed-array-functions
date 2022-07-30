@@ -66,7 +66,6 @@ final class FixedArrayable implements JsonSerializable
         return $this->from(FixedArray::addFrom($input, $this->value));
     }
 
-
     /**
      * Returns whether a given item is contained within the array.
      *
