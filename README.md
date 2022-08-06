@@ -56,10 +56,37 @@ You can install the package via Composer:
 composer require petrobolos/fixed-array-functions
 ```
 
-## Usage
+## Fluent interface
+FixedArray is best used with its fluent interface. If you're familiar with Illuminate collections, you'll feel right at 
+home. Provide it an SplFixedArray to get started, or a standard array or collection that will be automatically
+converted. If you provide any other kind of data, including `null`, it will be inserted into a new SplFixedArray.
 
-A fluent interface is planned for a future release - for now, `FixedArray` is available to be imported and used 
-anywhere in your code, as its functions are static.
+```php
+use Petrobolos\FixedArray\FixedArrayable;
+
+// You can start by either instantiating a new instance of FixedArrayable, or by calling its helper method:
+// The array provided will be converted internally into an SplFixedArray.
+$array = new FixedArrayable([1, 2, 3]); 
+
+// Alternatively, you can use specific helper methods to begin building your interface logic:
+// The same will happen with this collection.
+$array = FixedArrayable::fromCollection(collect([1, 2, 3]);
+
+// From here, you can chain different methods, just like you would a collection.
+$result = $array
+->addFrom([4, 5, 6])
+->resize(20)
+->filter(fn ($value) => $value % 2 === 0))
+->map(fn ($value) => $value * 2))
+->get();
+
+// The result will be a SplFixedArray containing [2, 4, 6] but still with 20 indices.
+```
+
+## Static methods:
+
+You aren't forced to use the fluent interface and can access methods directly by calling them. This is useful if you
+only need to do one or two operations on a fixed array.
 
 ```php
 use Petrobolos\FixedArray;
