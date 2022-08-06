@@ -7,11 +7,10 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/petrobolos/fixed-array-functions.svg?style=flat-square)](https://packagist.org/packages/petrobolos/fixed-array-functions)
 [![GitHub](https://img.shields.io/github/license/petrobolos/fixed-array-functions)](https://www.github.com/petrobolos/fixed-array-functions)
 
-SplFixedArrays are an implementation of a traditional, bounded array in the PHP standard library. While they require
-manual resizing, they're significantly faster than regular arrays or collections when working with large sets of data.
+SplFixedArrays are an implementation of a traditional, bounded array in the PHP standard library. 
 
-Working with large amounts of game data is increasingly common at Petrobolos, so this library was born to make things
-easier and as efficient as possible.
+While they require manual resizing, they're significantly faster than regular arrays or collections when working with 
+large sets of data.
 
 ## Full list of working methods:
  
