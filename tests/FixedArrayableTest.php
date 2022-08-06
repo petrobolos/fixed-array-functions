@@ -10,4 +10,3 @@ test('add from can add array data to the existing array', function () {
     /** @phpstan-ignore-next-line */
     $this->assertEquals($expected, $fluent->get());
 });
-
