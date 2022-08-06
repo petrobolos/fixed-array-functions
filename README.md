@@ -1,9 +1,11 @@
 # Fixed Array Functions
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/petrobolos/fixed-array-functions.svg?style=flat-square)](https://packagist.org/packages/petrobolos/fixed-array-functions)
+[![GitHub issues](https://img.shields.io/github/issues/petrobolos/fixed-array-functions)](https://github.com/petrobolos/fixed-array-functions/issues)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/petrobolos/fixed-array-functions/run-tests?label=tests)](https://github.com/petrobolos/fixed-array-functions/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/petrobolos/fixed-array-functions/Check%20&%20fix%20styling?label=code%20style)](https://github.com/petrobolos/fixed-array-functions/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/petrobolos/fixed-array-functions.svg?style=flat-square)](https://packagist.org/packages/petrobolos/fixed-array-functions)
+[![GitHub](https://img.shields.io/github/license/petrobolos/fixed-array-functions)](https://www.github.com/petrobolos/fixed-array-functions)
 
 SplFixedArrays are an implementation of a traditional, bounded array in the PHP standard library. While they require
 manual resizing, they're significantly faster than regular arrays or collections when working with large sets of data.
