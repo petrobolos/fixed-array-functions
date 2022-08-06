@@ -14,32 +14,35 @@ large sets of data.
 
 ## Full list of working methods:
  
-| Method         | Description                                                                 |                                         Example |
-|:---------------|:----------------------------------------------------------------------------|------------------------------------------------:|
-| add            | Alias for push.                                                             |                `FixedArray::add('bacon', $arr)` |
-| addFrom        | Add an array or collection of items to an array.                            |          `FixedArray::addFrom([1, 2, 3], $arr)` |
-| contains       | Checks whether an item exists in a given array.                             |     `FixedArray::contains('needle', $haystack)` |
-| count          | Returns the number of items in a given array.                               |                     `FixedArray::count($array)` |
-| create         | Creates a new fixed array.                                                  |                        `FixedArray::create(10)` |
-| first          | Returns the first element of the array.                                     |                     `FixedArray::first($array)` |
-| fromArray      | Creates a new fixed array from a standard array.                            |              `FixedArray::fromArray([1, 2, 3])` |
-| fromCollection | Creates a new fixed array from an Illuminate collection.                    | `FixedArray::fromCollection(collect([1, 2, 3])` |
-| getSize        | Alias for count.                                                            |                   `FixedArray::getSize($array)` |
-| isFixedArray   | Returns whether a given item is a fixed array.                              |     `FixedArray::isFixedArray($potentialArray)` |
-| last           | Returns the last element in an array.                                       |                      `FixedArray::last($array)` |
-| merge          | Merges given arrays, fixed arrays, or collections into a given fixed array. |   `FixedArray::merge($array, $array2, $array3)` |
-| nullify        | Overwrite all elements in an array with `null`.                             |                   `FixedArray::nullify($array)` |
-| offsetExists   | Returns whether a given array offset exists.                                |        `FixedArray::offsetExists(3, $haystack)` |
-| offsetGet      | Retrieves the value at a given array offset.                                |           `FixedArray::offsetGet(3, $haystack)` |
-| offsetNull     | Replaces the value at a given array offset with `null`.                     |          `FixedArray::offsetNull(3, $haystack)` |
-| offsetSet      | Replaces the value at a given array offset with a provided value.           |   `FixedArray::offsetSet(3, $value, $haystack)` |
-| pop            | Pops the latest value from the array.                                       |                       `FixedArray::pop($array)` |
-| push           | Pushes a given value to the first available space on the array.             |              `FixedArray::push($value, $array)` |
-| resize         | Alias for setSize.                                                          |                `FixedArray::resize(10, $array)` |
-| second         | Returns the second value from the array.                                    |                    `FixedArray::second($array)` |
-| setSize        | Resizes the array to a given size.                                          |               `FixedArray::setSize(10, $array)` |
-| toArray        | Converts a fixed array into a standard array.                               |                   `FixedArray::toArray($array)` |
-| toCollection   | Converts a fixed array into an Illuminate collection.                       |              `FixedArray::toCollection($array)` |
+| Method         | Description                                                                 |                                                       Example |
+|:---------------|:----------------------------------------------------------------------------|--------------------------------------------------------------:|
+| add            | Alias for push.                                                             |                              `FixedArray::add('bacon', $arr)` |
+| addFrom        | Add an array or collection of items to an array.                            |                        `FixedArray::addFrom([1, 2, 3], $arr)` |
+| contains       | Checks whether an item exists in a given array.                             |                   `FixedArray::contains('needle', $haystack)` |
+| count          | Returns the number of items in a given array.                               |                                   `FixedArray::count($array)` |
+| create         | Creates a new fixed array.                                                  |                                      `FixedArray::create(10)` |
+| each           | Apply a callback to each item in the array without modifying the original.  |         `FixedArray::each($array, fn () => var_dump($value))` |
+| filter         | Applies a filter to a given fixed array.                                    | `FixedArray::filter($array, fn ($value) => $value % 2 === 0)` |
+| first          | Returns the first element of the array.                                     |                                   `FixedArray::first($array)` |
+| fromArray      | Creates a new fixed array from a standard array.                            |                            `FixedArray::fromArray([1, 2, 3])` |
+| fromCollection | Creates a new fixed array from an Illuminate collection.                    |               `FixedArray::fromCollection(collect([1, 2, 3])` |
+| getSize        | Alias for count.                                                            |                                 `FixedArray::getSize($array)` |
+| isFixedArray   | Returns whether a given item is a fixed array.                              |                   `FixedArray::isFixedArray($potentialArray)` |
+| last           | Returns the last element in an array.                                       |                                    `FixedArray::last($array)` |
+| map            | Applies a callback to each item in the array and returns it.                |     `FixedArray::map($array, fn ($value) => (string) $value)` |
+| merge          | Merges given arrays, fixed arrays, or collections into a given fixed array. |                 `FixedArray::merge($array, $array2, $array3)` |
+| nullify        | Overwrite all elements in an array with `null`.                             |                                 `FixedArray::nullify($array)` |
+| offsetExists   | Returns whether a given array offset exists.                                |                      `FixedArray::offsetExists(3, $haystack)` |
+| offsetGet      | Retrieves the value at a given array offset.                                |                         `FixedArray::offsetGet(3, $haystack)` |
+| offsetNull     | Replaces the value at a given array offset with `null`.                     |                        `FixedArray::offsetNull(3, $haystack)` |
+| offsetSet      | Replaces the value at a given array offset with a provided value.           |                 `FixedArray::offsetSet(3, $value, $haystack)` |
+| pop            | Pops the latest value from the array.                                       |                                     `FixedArray::pop($array)` |
+| push           | Pushes a given value to the first available space on the array.             |                            `FixedArray::push($value, $array)` |
+| resize         | Alias for setSize.                                                          |                              `FixedArray::resize(10, $array)` |
+| second         | Returns the second value from the array.                                    |                                  `FixedArray::second($array)` |
+| setSize        | Resizes the array to a given size.                                          |                             `FixedArray::setSize(10, $array)` |
+| toArray        | Converts a fixed array into a standard array.                               |                                 `FixedArray::toArray($array)` |
+| toCollection   | Converts a fixed array into an Illuminate collection.                       |                            `FixedArray::toCollection($array)` |
 
 **NB:** Methods `current`, `key`, `next`, `rewind`, and `valid` are legacy alias operations for pointer-based array
 methods and simply return `null` currently. They will be implemented in a future version.
