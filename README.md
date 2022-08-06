@@ -122,7 +122,10 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Contributing
 
-We welcome pull requests! Please ensure any functionality submitted has adequate test coverage.
+We welcome pull requests, especially those improving the package's optimisation and speed, and new 
+features to bring it into parity with Collection.
+
+Please ensure any functionality submitted has adequate test coverage and documentation (at least in English.)
 
 ## License
 
