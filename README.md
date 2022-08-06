@@ -34,9 +34,12 @@ use Petrobolos\FixedArray\FixedArrayable;
 
 // You can start by either instantiating a new instance of FixedArrayable, or by calling its helper method:
 // The array provided will be converted internally into an SplFixedArray.
-$array = new FixedArrayable([1, 2, 3]); 
+$array = new FixedArrayable([1, 2, 3]);
 
-// Alternatively, you can use specific helper methods to begin building your interface logic:
+// You can also use the helper function to do the same thing!
+$array = fixedArray([1, 2, 3]); 
+
+// Lastly, you can use specific methods to begin building your interface logic:
 // The same will happen with this collection.
 $array = FixedArrayable::fromCollection(collect([1, 2, 3]);
 
