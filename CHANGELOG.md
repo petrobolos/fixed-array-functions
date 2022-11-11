@@ -2,6 +2,14 @@
 
 All notable changes to `fixed-array-functions` will be documented in this file.
 
+## v.1.2.2 - 2022-11-11
+
+### What's Changed
+
+- Bump dependabot/fetch-metadata from 1.3.4 to 1.3.5 by @dependabot in https://github.com/petrobolos/fixed-array-functions/pull/10
+
+**Full Changelog**: https://github.com/petrobolos/fixed-array-functions/compare/v1.2.1...v.1.2.2
+
 ## v1.2.1 - 2022-10-07
 
 ### What's Changed
