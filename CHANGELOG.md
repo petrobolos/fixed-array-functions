@@ -2,6 +2,14 @@
 
 All notable changes to `fixed-array-functions` will be documented in this file.
 
+## v1.2.3 - 2022-11-21
+
+### What's Changed
+
+- Bump ramsey/composer-install from 1 to 2 by @dependabot in https://github.com/petrobolos/fixed-array-functions/pull/11
+
+**Full Changelog**: https://github.com/petrobolos/fixed-array-functions/compare/v.1.2.2...v1.2.3
+
 ## v.1.2.2 - 2022-11-11
 
 ### What's Changed
