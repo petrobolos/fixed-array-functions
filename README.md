@@ -2,17 +2,18 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/petrobolos/fixed-array-functions.svg?style=flat-square)](https://packagist.org/packages/petrobolos/fixed-array-functions)
 [![GitHub issues](https://img.shields.io/github/issues/petrobolos/fixed-array-functions)](https://github.com/petrobolos/fixed-array-functions/issues)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/petrobolos/fixed-array-functions/run-tests?label=tests)](https://github.com/petrobolos/fixed-array-functions/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/petrobolos/fixed-array-functions/Check%20&%20fix%20styling?label=code%20style)](https://github.com/petrobolos/fixed-array-functions/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/petrobolos/fixed-array-functions/run-tests.yml?label=test&branch=main)](https://github.com/petrobolos/fixed-array-functions/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/petrobolos/fixed-array-functions/php-cs-fixer.yml?label=lint&branch=main)](https://github.com/petrobolos/fixed-array-functions/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/petrobolos/fixed-array-functions.svg?style=flat-square)](https://packagist.org/packages/petrobolos/fixed-array-functions)
 [![GitHub](https://img.shields.io/github/license/petrobolos/fixed-array-functions)](https://www.github.com/petrobolos/fixed-array-functions)
 
-SplFixedArrays are an implementation of a traditional, bounded array in the PHP standard library. 
+SplFixedArrays are an implementation of a traditional, bounded array in the PHP standard library.
 
-While they require manual resizing, they're significantly faster than regular arrays or collections when working with 
+While they require manual resizing, they're significantly faster than regular arrays or collections when working with
 large sets of data.
 
 ## Requirements
+
 Currently, requires PHP 8 or above, but work to backport support for 7.4 is in progress. This package is designed
 for Laravel 8 and 9, but might play nicely with older versions, or with Lumen. Let us know.
 
@@ -25,7 +26,8 @@ composer require petrobolos/fixed-array-functions
 ```
 
 ## Fluent interface
-FixedArray is best used with its fluent interface. If you're familiar with Illuminate collections, you'll feel right at 
+
+FixedArray is best used with its fluent interface. If you're familiar with Illuminate collections, you'll feel right at
 home. Provide it an SplFixedArray to get started, or a standard array or collection that will be automatically
 converted. If you provide any other kind of data, including `null`, it will be inserted into a new SplFixedArray.
 
@@ -37,7 +39,7 @@ use Petrobolos\FixedArray\FixedArrayable;
 $array = new FixedArrayable([1, 2, 3]);
 
 // You can also use the helper function to do the same thing!
-$array = fixedArray([1, 2, 3]); 
+$array = fixedArray([1, 2, 3]);
 
 // Lastly, you can use specific methods to begin building your interface logic:
 // The same will happen with this collection.
@@ -54,7 +56,7 @@ $result = $array
 // The result will be a SplFixedArray containing [2, 4, 6] but still with 20 indices.
 ```
 
-## Static methods:
+## Static methods
 
 You aren't forced to use the fluent interface and can access methods directly by calling them. This is useful if you
 only need to do one or two operations on a fixed array.
@@ -70,13 +72,13 @@ FixedArray::push('apple', $arr);
 
 // Easily and efficiently merge fixed arrays, regular arrays, and even Illuminate collections.
 $everything = FixedArray::merge(
-    $arr, 
-    ['a', 'regular', 'array'], 
+    $arr,
+    ['a', 'regular', 'array'],
     collect(['and', 'an', 'illuminate', 'collection']),
 );
 ```
 
-## Full list of working methods:
+## Full list of working methods
 
 | Method         | Description                                                                 |                                                       Example |
 |:---------------|:----------------------------------------------------------------------------|--------------------------------------------------------------:|
@@ -125,7 +127,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Contributing
 
-We welcome pull requests, especially those improving the package's optimisation and speed, and new 
+We welcome pull requests, especially those improving the package's optimisation and speed, and new
 features to bring it into parity with Collection.
 
 Please ensure any functionality submitted has adequate test coverage and documentation (at least in English.)
